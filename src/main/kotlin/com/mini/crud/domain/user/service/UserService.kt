@@ -52,4 +52,12 @@ class UserService @Autowired constructor(
     fun deleteUser(id: Long) {
         userRepository.deleteById(id)
     }
+
+    fun findUsersByName(name: String): List<UserDto> {
+        return userRepository.findByName(name).map { it.toDto() }
+    }
+
+    fun findUsersByTeamId(teamId: Long): List<UserDto> {
+        return userRepository.findByTeamId(teamId).map { it.toDto() }
+    }
 }
