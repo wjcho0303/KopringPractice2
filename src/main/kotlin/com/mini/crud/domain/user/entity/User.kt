@@ -16,14 +16,13 @@ data class User (
     val team: Team? = null,
 
     @Enumerated(EnumType.STRING)
-    val role: Role
+    val role: Role = Role.USER
 ) {
     fun toDto(): UserDto {
         return UserDto(
             name = this.name,
             email = this.email,
             teamName = this.team?.name,
-            role = this.role
         )
     }
 }

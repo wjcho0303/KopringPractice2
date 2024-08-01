@@ -2,6 +2,7 @@ package com.mini.crud.domain.user.service
 
 import com.mini.crud.domain.team.repository.TeamRepository
 import com.mini.crud.domain.user.dto.UserDto
+import com.mini.crud.domain.user.entity.Role
 import com.mini.crud.domain.user.entity.User
 import com.mini.crud.domain.user.repository.UserRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -29,8 +30,9 @@ class UserService @Autowired constructor(
             name = userDto.name,
             email = userDto.email,
             team = team,
-            role = userDto.role
+            role = Role.USER
         )
+        userRepository.save(user)
     }
 
     fun updateUser(id: Long, userDto: UserDto) {
@@ -41,7 +43,7 @@ class UserService @Autowired constructor(
                 name = userDto.name,
                 email = userDto.email,
                 team = team,
-                role = userDto.role
+                role = Role.USER
             )
             userRepository.save(userToUpdate)
         } else {
