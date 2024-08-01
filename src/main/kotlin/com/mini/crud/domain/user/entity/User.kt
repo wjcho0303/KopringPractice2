@@ -1,6 +1,7 @@
 package com.mini.crud.domain.user.entity
 
 import com.mini.crud.domain.team.entity.Team
+import com.mini.crud.domain.user.dto.UserDto
 import jakarta.persistence.*
 
 @Entity
@@ -16,4 +17,13 @@ data class User (
 
     @Enumerated(EnumType.STRING)
     val role: Role
-)
+) {
+    fun toDto(): UserDto {
+        return UserDto(
+            name = this.name,
+            email = this.email,
+            teamName = this.team?.name,
+            role = this.role
+        )
+    }
+}

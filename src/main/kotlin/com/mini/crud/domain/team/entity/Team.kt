@@ -1,6 +1,6 @@
 package com.mini.crud.domain.team.entity
 
-import com.mini.crud.domain.team.dto.TeamResponse
+import com.mini.crud.domain.team.dto.TeamDto
 import com.mini.crud.domain.user.entity.User
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -17,8 +17,8 @@ data class Team (
     @OneToMany(mappedBy = "team")
     val users: Set<User> = emptySet()
 ) {
-    fun toDto(): TeamResponse {
-        return TeamResponse(
+    fun toDto(): TeamDto {
+        return TeamDto(
             name = this.name
         )
     }

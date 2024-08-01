@@ -1,6 +1,6 @@
 package com.mini.crud.domain.team.service
 
-import com.mini.crud.domain.team.dto.TeamResponse
+import com.mini.crud.domain.team.dto.TeamDto
 import com.mini.crud.domain.team.entity.Team
 import com.mini.crud.domain.team.repository.TeamRepository
 import org.springframework.beans.factory.annotation.Autowired
@@ -13,20 +13,20 @@ class TeamService @Autowired constructor(
     private val teamRepository: TeamRepository
 ) {
 
-    fun getAllTeams(): List<TeamResponse> {
+    fun getAllTeams(): List<TeamDto> {
         return teamRepository.findAll().map { it.toDto() }
     }
 
-    fun getTeamById(id: Long): Optional<TeamResponse> {
+    fun getTeamById(id: Long): Optional<TeamDto> {
         return teamRepository.findById(id).map { it.toDto() }
     }
 
-    fun createTeam(teamResponse: TeamResponse): Team {
-        val team = Team(name = teamResponse.name)
+    fun createTeam(teamDto: TeamDto): Team {
+        val team = Team(name = teamDto.name)
         return teamRepository.save(team)
     }
 
-    fun updateTeam(id: Long, teamDto: TeamResponse) {
+    fun updateTeam(id: Long, teamDto: TeamDto) {
         if (teamRepository.existsById(id)) {
             val teamToUpdate = Team(
                 id = id,
